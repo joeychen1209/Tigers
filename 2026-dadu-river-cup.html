@@ -474,6 +474,12 @@
       .mini-meta{font-size:12px}
       .location-strip{align-items:flex-start;flex-direction:column}
     }
+    /* Notice tabs */
+    .notice-tabs{display:flex;gap:8px;margin-bottom:14px}
+    .notice-btn{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:999px;padding:10px 18px;cursor:pointer;font-weight:900}
+    .notice-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .notice-panel{display:none}
+    .notice-panel.active{display:block}
   </style>
 </head>
 <body>
@@ -486,6 +492,7 @@
       <div class="nav-links">
         <a href="#top">TOP</a>
         <a href="#info">賽事資訊</a>
+        <a href="#notice">行程通知</a>
         <a href="#briefing">集合提醒</a>
         <a href="#schedule">賽事行程</a>
         <a href="#stay">住宿地點</a>
@@ -551,6 +558,83 @@
             <div class="label">TEAM</div>
             <div class="value">野球虎</div>
             <div class="sub">U10・U12・U15</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="notice">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">NOTICE</div>
+            <h2>行程通知</h2>
+          </div>
+          <div class="section-desc">請點選組別檢視行程與集合提醒。</div>
+        </div>
+
+        <div class="notice-tabs" role="tablist">
+          <button class="notice-btn active" data-tab="notice-u10">U10</button>
+          <button class="notice-btn" data-tab="notice-u12">U12</button>
+          <button class="notice-btn" data-tab="notice-u15">U15</button>
+        </div>
+
+        <div class="notice-panel active" id="notice-u10">
+          <div class="briefing">
+            <div class="briefing-top">
+              <div>
+                <div class="briefing-time">📣 2026 大肚溪盃 U10 行程通知</div>
+                <div class="briefing-title">出發前提醒</div>
+              </div>
+              <div class="briefing-tag">請務必確認</div>
+            </div>
+
+            <div style="margin-top:12px">
+              <p>除了裝備之外，請再確認有攜帶有照片的證件</p>
+
+              <p><strong>📅 行程通知</strong><br>
+              8/21（五）@天閣飯店<br>
+              21:30 3F會議室集合</p>
+
+              <p><strong>📅 行程通知</strong><br>
+              8/22（六）@大肚溪棒壘球場<br>
+              06:30 出發至球場<br>
+              07:00~08:00 集合熱身<br>
+              08:00~09:20 野球虎 vs 台中道奇<br>
+              09:20~10:40 基隆 Enjoy vs 野球虎<br>
+              10:40~12:00 觀戰應援（視當日狀況）<br>
+              12:00~12:30 開幕典禮<br>
+              12:30~14:00 休息<br>
+              14:00~15:10 熱身<br>
+              15:10~16:30 IT洲際虎 vs 野球虎<br>
+              16:30 賽後檢討/頒獎</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="notice-panel" id="notice-u12">
+          <div class="briefing">
+            <div class="briefing-top">
+              <div>
+                <div class="briefing-time">U12 行程通知</div>
+                <div class="briefing-title">資訊待補</div>
+              </div>
+              <div class="briefing-tag">待公布</div>
+            </div>
+            <div style="margin-top:12px;color:var(--muted)">U12 行程資訊將於確認後補上。</div>
+          </div>
+        </div>
+
+        <div class="notice-panel" id="notice-u15">
+          <div class="briefing">
+            <div class="briefing-top">
+              <div>
+                <div class="briefing-time">U15 行程通知</div>
+                <div class="briefing-title">資訊待補</div>
+              </div>
+              <div class="briefing-tag">待公布</div>
+            </div>
+            <div style="margin-top:12px;color:var(--muted)">U15 行程資訊將於確認後補上。</div>
           </div>
         </div>
       </div>
@@ -803,6 +887,16 @@
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
         document.querySelectorAll('.schedule-panel').forEach(x => x.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // 行程通知切換
+    document.querySelectorAll('.notice-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.notice-btn').forEach(x => x.classList.remove('active'));
+        document.querySelectorAll('.notice-panel').forEach(x => x.classList.remove('active'));
         btn.classList.add('active');
         document.getElementById(btn.dataset.tab).classList.add('active');
       });
