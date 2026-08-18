@@ -395,8 +395,9 @@
       color:var(--accent);
       border-radius:999px;
       padding:8px 12px;
-      font-size:12px;
+      font-size:16px;
       font-weight:900;
+      line-height:1.4;
     }
     .briefing-grid{
       display:grid;
@@ -511,23 +512,25 @@
     }
     /* Notice tabs */
     .notice-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-    .notice-btn{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:999px;padding:10px 18px;cursor:pointer;font-weight:900;transition:.2s ease}
+    .notice-btn{display:inline-flex;align-items:center;justify-content:center;min-width:88px;border:1px solid var(--line);background:transparent;color:var(--text);border-radius:999px;padding:10px 18px;cursor:pointer;font-weight:900;transition:.2s ease}
     .notice-btn:hover{border-color:rgba(255,177,61,.5);color:var(--accent)}
     .notice-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
     .notice-panel{display:none}
     .notice-panel.active{display:block}
     .notice-empty{padding:18px;border:1px dashed var(--line);border-radius:16px;color:var(--muted);text-align:center;margin-bottom:12px;background:var(--panel)}
     .daily-cards{display:grid;gap:12px}
-    .day-card{background:linear-gradient(180deg,rgba(255,255,255,.98),var(--panel-2));border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:12px}
-    .day-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-    .day-badge{background:var(--accent);color:#fff;padding:8px 12px;border-radius:12px;font-weight:900}
-    .day-title{font-weight:900;font-size:16px}
-    .day-sub{color:var(--muted);font-size:13px;margin-top:4px}
+    .day-card{background:linear-gradient(180deg,rgba(255,255,255,.99),var(--panel-2));border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:12px;box-shadow:0 8px 22px rgba(17,17,17,.03)}
+    .day-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+    .day-badge{background:var(--accent);color:#fff;padding:8px 12px;border-radius:999px;font-weight:900;box-shadow:0 6px 16px rgba(217,119,6,.16)}
+    .day-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:7px 10px;background:rgba(217,119,6,.08);border:1px solid rgba(217,119,6,.16);border-radius:999px}
+    .day-title{font-weight:900;font-size:14px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+    .day-sub{color:var(--text);font-size:15px;font-weight:800;margin-top:0}
     .day-body{padding-top:12px}
-    .timeline{display:flex;flex-direction:column;gap:10px;margin-top:12px}
-    .event{display:flex;gap:12px;align-items:flex-start}
-    .event-time{width:92px;flex:0 0 92px;font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums}
-    .event-content{flex:1;color:var(--text);font-size:15px;line-height:1.65}
+    .timeline{display:flex;flex-direction:column;gap:8px;margin-top:14px;padding-top:10px;border-top:1px solid rgba(17,17,17,.08)}
+    .event{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid rgba(17,17,17,.06)}
+    .event:last-child{border-bottom:0;padding-bottom:0}
+    .event-time{width:108px;flex:0 0 108px;font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums;background:rgba(217,119,6,.1);padding:5px 8px;border-radius:999px;text-align:center;font-size:14px;line-height:1.3}
+    .event-content{flex:1;color:var(--text);font-size:15px;line-height:1.65;min-width:0}
     @media (max-width:560px){
       .event{gap:8px}
       .event-time{width:72px}
@@ -647,9 +650,9 @@
             <div class="day-card">
               <div class="day-head">
                 <div class="day-badge">8/21（五）</div>
-                <div>
+                <div class="day-meta">
                   <div class="day-title">地點</div>
-                  <div class="day-sub">天閣飯店</div>
+                  <div class="day-sub">天閣酒店</div>
                 </div>
               </div>
               <div class="timeline">
@@ -660,7 +663,7 @@
             <div class="day-card">
               <div class="day-head">
                 <div class="day-badge">8/22（六）</div>
-                <div>
+                <div class="day-meta">
                   <div class="day-title">地點</div>
                   <div class="day-sub">大肚溪棒壘球場</div>
                 </div>
@@ -672,8 +675,8 @@
                 <div class="event"><div class="event-time">09:20~10:40</div><div class="event-content">基隆 Enjoy vs 野球虎</div></div>
                 <div class="event"><div class="event-time">10:40~12:00</div><div class="event-content">觀戰應援（視當日狀況）</div></div>
                 <div class="event"><div class="event-time">12:00~12:30</div><div class="event-content">開幕典禮</div></div>
-                <div class="event"><div class="event-time">12:30~14:00</div><div class="event-content">休息</div></div>
-                <div class="event"><div class="event-time">14:00~15:10</div><div class="event-content">熱身</div></div>
+                <div class="event"><div class="event-time">12:30~14:00</div><div class="event-content">休息用餐</div></div>
+                <div class="event"><div class="event-time">14:00~15:10</div><div class="event-content">集合熱身</div></div>
                 <div class="event"><div class="event-time">15:10~16:30</div><div class="event-content">IT 洲際虎 vs 野球虎</div></div>
                 <div class="event"><div class="event-time">16:30</div><div class="event-content">賽後檢討 / 頒獎</div></div>
               </div>
@@ -737,9 +740,9 @@
           <div class="briefing-top">
             <div>
               <div class="briefing-time">8/21 21:30</div>
-              <div class="briefing-title">天閣飯店交誼廳</div>
+              <div class="briefing-title">比賽前一晚</div>
             </div>
-            <div class="briefing-tag">前一晚</div>
+            <div class="briefing-tag">天閣酒店交誼廳 3F</div>
           </div>
 
           <div class="briefing-grid">
