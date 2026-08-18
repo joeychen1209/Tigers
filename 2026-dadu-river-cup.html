@@ -480,6 +480,7 @@
     .notice-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
     .notice-panel{display:none}
     .notice-panel.active{display:block}
+  .notice-empty{padding:18px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center;margin-bottom:12px}
     .daily-cards{display:grid;gap:12px}
     .day-card{background:linear-gradient(180deg,rgba(255,255,255,.98),var(--panel));border:1px solid var(--line);border-radius:16px;padding:14px}
     .day-head{display:flex;gap:12px;align-items:center}
@@ -589,12 +590,14 @@
         </div>
 
         <div class="notice-tabs" role="tablist">
-          <button class="notice-btn active" data-tab="notice-u10">U10</button>
+          <button class="notice-btn" data-tab="notice-u10">U10</button>
           <button class="notice-btn" data-tab="notice-u12">U12</button>
           <button class="notice-btn" data-tab="notice-u15">U15</button>
         </div>
 
-        <div class="notice-panel active" id="notice-u10">
+        <div class="notice-empty">請選擇組別以檢視行程</div>
+
+  <div class="notice-panel" id="notice-u10">
           <div class="briefing">
             <div class="briefing-top">
               <div>
@@ -632,7 +635,7 @@
           </div>
         </div>
 
-        <div class="notice-panel" id="notice-u12">
+  <div class="notice-panel" id="notice-u12">
           <div class="briefing">
             <div class="briefing-top">
               <div>
@@ -644,7 +647,7 @@
           </div>
         </div>
 
-        <div class="notice-panel" id="notice-u15">
+  <div class="notice-panel" id="notice-u15">
           <div class="briefing">
             <div class="briefing-top">
               <div>
@@ -910,13 +913,24 @@
       });
     });
 
-    // 行程通知切換
-    document.querySelectorAll('.notice-btn').forEach(btn => {
+    // 行程通知切換（初始面板隱藏，點選才顯示）
+    const noticeBtns = document.querySelectorAll('.notice-btn');
+    const noticeEmpty = document.querySelector('.notice-empty');
+    noticeBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.notice-btn').forEach(x => x.classList.remove('active'));
-        document.querySelectorAll('.notice-panel').forEach(x => x.classList.remove('active'));
+        // 移除其他按鈕 active
+        noticeBtns.forEach(x => x.classList.remove('active'));
         btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
+
+        // 隱藏提示文字
+        if (noticeEmpty) noticeEmpty.style.display = 'none';
+
+        // 隱藏所有 panel，顯示被點選的 panel
+        document.querySelectorAll('.notice-panel').forEach(x => x.style.display = 'none');
+        const panel = document.getElementById(btn.dataset.tab);
+        if (panel) panel.style.display = 'block';
+        // 自動將 panel 捲動到視窗中（以 topbar 高度為偏移）
+        panel?.scrollIntoView({behavior: 'smooth', block: 'start'});
       });
     });
 
